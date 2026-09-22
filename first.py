@@ -1,7 +1,10 @@
 import numpy as np
 class NeuralNetwork:
+   """intialising neural network class we initilaise method
+    with no of layers which is length of sizes list and 
+    we initialise biases and weights as matrices 
+   """
 
-    
    def __init__(self,sizes):
        self.num_layers = len(sizes)
        self.sizes = sizes
