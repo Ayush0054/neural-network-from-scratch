@@ -141,9 +141,6 @@ the output is determinded by whether the weigted sum ∑j wjxj is less than or g
 </math>
  
 
- lets see an example
-
-
 ### sigmoid neurons
  Sigmoid neurons are similar to perceptrons, but modified so that small changes in their weights and bias cause only a small change in their output
 
@@ -158,7 +155,71 @@ input neurons. -> not io neurons -> output neurons
 feedforward neural network : neural networks where the output from one layer is used as input to the next layer. Such networks are called _feedforward_ neural networks . This means there are no loops in the network - information is always fed forward, never fed back.
 
 ### gradient and gradient descent
+ first lets talk about cost function or loss
+
+  \begin{eqnarray}  C(w,b) \equiv
+  \frac{1}{2n} \sum_x \| y(x) - a\|^2.
+  \tag{6}\end{eqnarray}
+
+cost is the difference from the output which we want to achieve , example if we want output neuron to be 1 but it is 0 then cost is 1
+
+to minimise the cost , gradient descent is used.
+
+- **Gradient** ∇C\nabla C points in the direction where the cost **increases fastest**.
+- **Negative gradient** −∇C-\nabla C points in the direction where the cost **decreases fastest**.
+- **Gradient descent** is the process of repeatedly moving in that negative-gradient direction.
+
+Lets take an example of ball and slope 
+lets put the ball at minimum distance from the end of slope to make sure that it will definetly roll down to the end of slope .
+
+lets represent weight and biases as v
+
+$∇C≡(∂C/∂v1,∂C/∂v2)T.$ 
+
+ΔC≈∇C⋅Δv 
+
+Δv=−η∇C , η is a small positive parameter (known as the _learning rate_).
+
+to start this example lets put the ball at top , it doesnt go down to slope ? lets move it little bit further near the downward slope , do this until it is sure that ball will go downwards ,
+
+v→v′=v−η∇C
+
+one thing to note , we dont want high learning rate since then ball can bounce the slope or not even slow learning rate else it will crawl
+
+- SGD , Stochastic gradient descent
+
+instead of using entire dataset to calculate gradient , use small random group of examples called mini batch
+
+for each input network has its own cost  and totaal cost is the avg of all those each cost, 
+to compute the gradient ∇C we need to compute the gradients ∇Cx separately for each training input x
+, and then average them,
+  ∇C=1n∑x∇Cx
+
+now instead of doing this , we can randmoly pick training examples for small number m from X1 to Xm
+and we calulate avg gradient of that instead of full batch, and its approxiamately equal to full gradient
+
 
 ### code part 
 
-### backpropagation
+- lets initialise neural network class with base Method
+
+```
+class NeuralNetwork:
+   """intialising neural network class we initilaise method
+    with no of layers which is length of sizes list and 
+    we initialise biases and weights as matrices 
+   """
+
+   def __init__(self,sizes):
+       self.num_layers = len(sizes)
+       self.sizes = sizes
+       self.biases = [np.random.randn(y,1) for y in sizes[1:]] 
+       self.weights = [np.random.randn(y,x) for x,y in zip(sizes[:-1],sizes[1:])]
+```
+
+what this does ? 
+
+### before backpropagation lets revise some numerical things which we learnt here
+
+
+### backpropagation 
