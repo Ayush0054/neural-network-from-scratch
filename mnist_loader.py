@@ -16,7 +16,7 @@ import gzip
 # Third-party libraries
 import numpy as np
 import os
-path = os.path.join(os.path.dirname(__file__), "..", "data", "mnist.pkl.gz")
+path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "mnist.pkl.gz")
 def load_data():
     """Return the MNIST data as a tuple containing the training data,
     the validation data, and the test data.

@@ -259,6 +259,10 @@ def sigmoid_prime(z):
 
 ```
 
-### before backpropagation lets revise some numerical things which we learnt here
-
 ### backpropagation 
+
+
+### resources
+https://builtin.com/data-science/gradient-descent
+http://neuralnetworksanddeeplearning.com/
+https://knowledge.kevinjosethomas.com/Artificial-Intelligence/Gradient-Descent
